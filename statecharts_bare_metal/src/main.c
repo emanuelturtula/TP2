@@ -81,7 +81,7 @@
 #define TEST (SCT_1)
 
 
-#define TICKRATE_1MS	(200)				/* 1000 ticks per second */
+#define TICKRATE_1MS	(1)				/* 1000 ticks per second */
 #define TICKRATE_MS		(TICKRATE_1MS)	/* 1000 ticks per second */
 
 /*==================[internal data declaration]==============================*/
