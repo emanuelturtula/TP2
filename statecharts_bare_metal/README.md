@@ -107,25 +107,25 @@ Cuando se presione el pulsador 1 la puerta comenzará a abrirce hasta que se pre
 
 Los eventos, acciones, estados y constantes que se utilizarón para la implementación fueron los siguientes
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_6.PNG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_6.png)
 
 En primer lugar se realizó el siguiente diagrama de estados, que es el encargado de describir la lógica principal del programa.
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_4.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_4.png)
 
 Para realizar el sensado de las teclas se utilizo el siguiente diagrama de estados. En este, cuando se produzca el evento **evTECXOprimido** esperará 50 ms y se realizará la validación comprobando que se produzca ese mismo evento. De ser así se guarda el valor del pulsador para ver que tarea se debe realizar. En caso de que haya detectado incorrectamente que se pulso una tecla, vuelve al estado no oprimido.
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_2.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_2.png)
 
 Una vez que se obtiene la información sobre que pulsador se presionó, IDLE la procesa. En esta region se espera recibir el dato mencionado anteriormente. Cuando se recibe alguno de estos valores se produce un evento, tal que la lógica principal actue.
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_3.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_3.png)
 
 Luego de producirce cada evento se vuelve a esperar hasta que se presione otro pulsador para generar otro evento.
 
 Para realizar el parpadeo de LEDs se generan eventos **siTitilarLEDx**, donde el LED x se mantendra apagado 250 ms y 500 ms prendido, hasta que aparezca el evento **siNoTitilarLEDx**, como se muestra en la siguiente figura.
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_5.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_5.png)
 
 
 ### Código de main.c
