@@ -26,7 +26,7 @@ En el diagrama de estados con **Time Events**, los eventos que cambian de estado
 
 Por esta razón, no se definió ningun evento en el cuadro de la izquierda.
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/blinky_time.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/blinky_time.JPG?raw=true)
 
 ### Código en main.c
 
@@ -34,60 +34,60 @@ Por esta razón, no se definió ningun evento en el cuadro de la izquierda.
 
 En primer lugar, se hacen todas las configuraciones de la placa, de los ticks y de las interrupciones como se vio en el primer TP. Con un **#define** se debe establecer si se usan **Time Events** o no. En el caso de que se utilicen los **Time Events**, se deben inicializar los **Timer Ticks**.
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/main_init.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/main_init.JPG?raw=true)
 
 Se realiza primero la inicialización del diagrama a través de la función **prefix_init** que define la estructura de datos de la máquina de estados y que llama a las funciones **prefix_ClearInEvents** y **prefix_ClearOutEvents**
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/prefix_init.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/prefix_init.JPG?raw=true)
 
 La función **prefix_ClearInEvents** define el evento como inicialmente apagado.
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/clearinevents.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/clearinevents.JPG?raw=true)
 
 Luego, la función **prefix_enter** setea la secuencia por defecto del programa, que a través de varias funciones que se mostrarán en las siguientes cinco imágenes, se puede ver que define el comienzo del diagrama en el estado **APAGADO**
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/prefix_enter.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/prefix_enter.JPG?raw=true)
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/enseq_main_default.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/enseq_main_default.JPG?raw=true)
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/react_main_default.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/react_main_default.JPG?raw=true)
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/enseq_main_apagado.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/enseq_main_apagado.JPG?raw=true)
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/enact_main_apagado.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/enact_main_apagado.JPG?raw=true)
 
 La función **prefix_enact_main_region_APAGADO** llama a la acción **prefixIface_opLED**, que el programador tuvo que definir y que se observa a continuación, donde se llama a la función **gpioWrite** que establece un estado en el LED que se le indica:
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/opLED.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/opLED.JPG?raw=true)
 
 La función principal es un loop que espera a que la interrupción ocurra, al igual que en el TP 1. La diferencia en este caso es si están definidos o no los **Time Events**.
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/main_while1.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/main_while1.JPG?raw=true)
 
 1. Si los **Time Events** no están activados, se llamá a la función **prefixIface_raise_evTick**, que enciende el evento **ev_Tick** como se muestra a continuación:
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/prefix_evTick.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/prefix_evTick.JPG?raw=true)
 
 2. Si los **Time Events** están activados, se llamá a las función **UpdateTimers**, que define la estructura de los ticks, mostrada a continuación: 
 
-![](https://github.com/emanuelturtula/TP2/blob/master/Imagenes/update_timers.JPG?raw=true)
-![](https://github.com/emanuelturtula/TP2/blob/master/Imagenes/1_14.PNG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/update_timers.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/1_14.PNG?raw=true)
 
 Luego, se llama a la función **IsPendEvent**, donde se chequea si hay algún evento en la cola de eventos, esperando a ocurrir.
 
-![](https://github.com/emanuelturtula/TP2/blob/master/Imagenes/ispendevent.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/ispendevent.JPG?raw=true)
 
 La función **prefix_raiseTimeEvent** funciona de forma parecida a la función **prefixIface_raise_evTick**, seteando el evento a uno.
 
-![](https://github.com/emanuelturtula/TP2/blob/master/Imagenes/raise_time_event.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/raise_time_event.JPG?raw=true)
 
 Por último, mediante la función **MarkAsAttEvent** se determina que el evento ya no se encuentra pendiente.
 
-![](https://github.com/emanuelturtula/TP2/blob/master/Imagenes/markasatevent.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/markasatevent.JPG?raw=true)
 
 Por último, se llama a la función **prefix_runCycle** que permite la ejecución del ciclo que se creo en el diagrama de estados.
 
-![](https://github.com/emanuelturtula/TP2/blob/master/Imagenes/prefix_runcycle.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/prefix_runcycle.JPG?raw=true)
 
 ## Puerta Corrediza
 
@@ -107,45 +107,45 @@ Cuando se presione el pulsador 1 la puerta comenzará a abrirce hasta que se pre
 
 Los eventos, acciones, estados y constantes que se utilizarón para la implementación fueron los siguientes
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/pc_6.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_6.PNG)
 
 En primer lugar se realizó el siguiente diagrama de estados, que es el encargado de describir la lógica principal del programa.
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/pc_4.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_4.PNG)
 
 Para realizar el sensado de las teclas se utilizo el siguiente diagrama de estados. En este, cuando se produzca el evento **evTECXOprimido** esperará 50 ms y se realizará la validación comprobando que se produzca ese mismo evento. De ser así se guarda el valor del pulsador para ver que tarea se debe realizar. En caso de que haya detectado incorrectamente que se pulso una tecla, vuelve al estado no oprimido.
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/pc_2.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_2.PNG)
 
 Una vez que se obtiene la información sobre que pulsador se presionó, IDLE la procesa. En esta region se espera recibir el dato mencionado anteriormente. Cuando se recibe alguno de estos valores se produce un evento, tal que la lógica principal actue.
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/pc_3.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_3.PNG)
 
 Luego de producirce cada evento se vuelve a esperar hasta que se presione otro pulsador para generar otro evento.
 
 Para realizar el parpadeo de LEDs se generan eventos **siTitilarLEDx**, donde el LED x se mantendra apagado 250 ms y 500 ms prendido, hasta que aparezca el evento **siNoTitilarLEDx**, como se muestra en la siguiente figura.
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/pc_5.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_5.PNG)
 
 
 ### Código de main.c
 
 Una vez elegido el programa a ejecutar por medio de la compilación condicional, vamos a la porción de codigo correspondiente. En primier lugar, se puede observar la función Buttons_GetStatus_ encargada de detectar que tecla fue precionada.
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/puerta1.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/puerta1.PNG)
 
 Luego, como se observa en la figura siguiente, se realiza la configuración de la placa y la inicialización de variables y estados como se explicó anteriormente.
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/puerta2.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/puerta2.PNG)
 
 Despues se encuentra el loop principal. Este es muy similar al ejercicio anterior ya explicado. La diferencia es que se encuentra el codigo encargado de leer los pulsadores. 
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/puerta3.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/puerta3.PNG)
 
 Como se mencionó anteriormente, la función Buttons_GetStatus_ identifica que pulsador se presionó. Esta, a travez de la funcion gpioRead guarda el valor de la tecla correspondiente en la variable BUTTON_Status. Luego si ésta es diferente a cero se activa el evento **evTECXOprimido**, de no ser asi, el evento que se generará será **evTECXNoOprimido**.
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/puerta4.PNG)
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/puerta5.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/puerta4.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/puerta5.PNG)
 
 ## Generador de Señales
 
