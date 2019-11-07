@@ -71,7 +71,7 @@ La función principal es un loop que espera a que la interrupción ocurra, al ig
 2. Si los **Time Events** están activados, se llamá a las función **UpdateTimers**, que define la estructura de los ticks, mostrada a continuación: 
 
 ![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/update_timers.JPG?raw=true)
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/1_14.png?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/1_14.PNG?raw=true)
 
 Luego, se llama a la función **IsPendEvent**, donde se chequea si hay algún evento en la cola de eventos, esperando a ocurrir.
 
