@@ -71,7 +71,7 @@ La función principal es un loop que espera a que la interrupción ocurra, al ig
 2. Si los **Time Events** están activados, se llamá a las función **UpdateTimers**, que define la estructura de los ticks, mostrada a continuación: 
 
 ![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/update_timers.JPG?raw=true)
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/1_14.PNG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/1_14.png?raw=true)
 
 Luego, se llama a la función **IsPendEvent**, donde se chequea si hay algún evento en la cola de eventos, esperando a ocurrir.
 
@@ -132,26 +132,26 @@ Para realizar el parpadeo de LEDs se generan eventos **siTitilarLEDx**, donde el
 
 Una vez elegido el programa a ejecutar por medio de la compilación condicional, vamos a la porción de codigo correspondiente. En primier lugar, se puede observar la función Buttons_GetStatus_ encargada de detectar que tecla fue precionada.
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/puerta1.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/puerta1.png)
 
 Luego, como se observa en la figura siguiente, se realiza la configuración de la placa y la inicialización de variables y estados como se explicó anteriormente.
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/puerta2.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/puerta2.png)
 
 Despues se encuentra el loop principal. Este es muy similar al ejercicio anterior ya explicado. La diferencia es que se encuentra el codigo encargado de leer los pulsadores. 
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/puerta3.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/puerta3.png)
 
 Como se mencionó anteriormente, la función Buttons_GetStatus_ identifica que pulsador se presionó. Esta, a travez de la funcion gpioRead guarda el valor de la tecla correspondiente en la variable BUTTON_Status. Luego si ésta es diferente a cero se activa el evento **evTECXOprimido**, de no ser asi, el evento que se generará será **evTECXNoOprimido**.
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/puerta4.PNG)
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/puerta5.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/puerta4.png)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/puerta5.png)
 
 ## Generador de Señales
 
 La consigna para el generador de señales era la siguiente:
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_0.PNG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_0.png?raw=true)
 
 Se determinó que para que se observen y controlen los cambios del generador, se iban a realizar las siguientes operaciones:
 
@@ -168,15 +168,15 @@ Se determinó que para que se observen y controlen los cambios del generador, se
 
 Los eventos, acciones, estados y constantes son los establecidos en la consigna, como se puede observar a continuación.
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_4.PNG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_4.png?raw=true)
 
 Se trabajó con teclas, por lo cual se utilizó el diagrama que lee si alguna tecla fue presionada, como en los ejercicios anteriores.
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_8.PNG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_8.png?raw=true)
 
 La región principal, espera a que las teclas sean presionadas y si se presiona alguna, hace la acción correspondiente, hasta recibir otra señal de una tecla, como se observa a continuación:
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_6.PNG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_6.png?raw=true)
 
 En cuanto a la forma, se puede ver en la siguiente región que cada vez que se presione la Tecla 1, como indica la imagen anterior, se va a activar el evento **eForma** que va a entrar al estado de forma de señal correspondiente. En cada estado, se activa la acción **aSetForma**, que recibe una constante cuyo número está asociado con el color de LED de cada forma de señal:
 
@@ -184,21 +184,21 @@ En cuanto a la forma, se puede ver en la siguiente región que cada vez que se p
     → cCUADR: 1
     → cSENOID: 2
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_5.PNG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_5.png?raw=true)
 
 La acción se define en el archivo **main.c** de la siguiente manera:
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_1.PNG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_1.png?raw=true)
 
 Se puede ver que la función recibe el valor del LED que se quiere prender, se enciende, luego se genera un delay y se vuelve a apagar.
 
 En cuanto a la magnitud, se puede observar en la siguiente imagen que cada vez que ingresa al estado **TENSIÓN** o **FORMA**, se llama a la acción **aSetMagn**. 
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_7.PNG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_7.png?raw=true)
 
 La acción **aSetMagn** se define en el **main.c** de la siguiente forma:
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_2.PNG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_2.png?raw=true)
 
 Lo que esta acción hace es cambiar el valor del LED, según el valor que recibe. Es decir, según las siguientes constantes, definidas en la máquina de estado:
 
@@ -209,7 +209,7 @@ la función enciende el LED1 o lo apaga. Así, como se dijo antes, cuando se mod
 
 Para incrementar o disminuir las magnitudes, se utilizaron los eventos **eUp** y **eDown**, correspondientes cada uno a una tecla diferente (Tecla 3 y Tecla 4) y se implementaron las acciones **aIncTens** y **aIncFrec** que son equivalentes, al igual que **aDecTens** y **aDecFrec**.
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_3.PNG?raw=true)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/gs_3.png?raw=true)
 
 Se puede notar que las acciones que incrementan el valor de la magnitud son iguales y las que lo disminuyen, también. Por esta razón, podría considerarse eliminar las operaciones equivalentes y utilizar una sola función para cada acción, con nombre **aIncMagn** y **aDecMagn**.
 Las acciones que aumentan el valor de la magnitud correspondiente, cambian el estado del LED2 cada vez que la Tecla 3 se presiona. Las operaciones que disminuyen su valor son iguales, sólo que modifican el LED3 cuando la Tecla 4 se presiona.
