@@ -107,7 +107,7 @@ Cuando se presione el pulsador 1 la puerta comenzará a abrirce hasta que se pre
 
 Los eventos, acciones, estados y constantes que se utilizarón para la implementación fueron los siguientes
 
-![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_6.PNG)
+![](https://github.com/emanuelturtula/TP2/blob/master/statecharts_bare_metal/Imagenes/pc_6.PNG?raw=true)
 
 En primer lugar se realizó el siguiente diagrama de estados, que es el encargado de describir la lógica principal del programa.
 
