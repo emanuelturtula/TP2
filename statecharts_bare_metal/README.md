@@ -15,7 +15,7 @@ Las constantes que se definen son:
     1. El LED que se utiliza (en este caso, es el **LED3**)
     2. Los estados del LED (**LED_ON**, **LED_OFF**)
 
-![](https://github.com/emanuelturtula/TP2/tree/master/Imagenes/blinky.JPG?raw=true)
+![](https://github.com/emanuelturtula/TP2/master/Imagenes/blinky.JPG?raw=true)
 
 #### Con Time Events
 
